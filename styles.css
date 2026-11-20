@@ -166,7 +166,7 @@ ul, ol { margin: 0; padding: 0; }
 .sobre-texto { margin-top: 32px; max-width: 760px; display: grid; gap: 16px; font-size: 1.08rem; color: var(--texto-suave); }
 .numeros {
   list-style: none; margin-top: 48px;
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px;
 }
 .numeros li {
   background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio);
@@ -298,6 +298,7 @@ ul, ol { margin: 0; padding: 0; }
 /* Telas médias */
 @media (max-width: 960px) {
   .numeros { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .numeros li:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .projetos-grade, .habilidades-grade { grid-template-columns: minmax(0, 1fr); }
   .contato-interno { grid-template-columns: minmax(0, 1fr); gap: 32px; }
 }
