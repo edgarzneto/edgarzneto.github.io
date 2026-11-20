@@ -1,5 +1,23 @@
 (function () {
   'use strict';
+  document.documentElement.classList.add('js');
+
+  // Animação de entrada das seções. Vem primeiro: se algo abaixo falhar,
+  // o conteúdo continua aparecendo.
+  var revelar = document.querySelectorAll('.revelar');
+  if ('IntersectionObserver' in window) {
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add('visivel');
+          observador.unobserve(entrada.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    revelar.forEach(function (el) { observador.observe(el); });
+  } else {
+    revelar.forEach(function (el) { el.classList.add('visivel'); });
+  }
 
   var topo = document.getElementById('topo-barra');
   var botaoMenu = document.querySelector('.menu-botao');
@@ -52,22 +70,6 @@
       });
     });
   });
-
-  // Animação de entrada das seções.
-  var revelar = document.querySelectorAll('.revelar');
-  if ('IntersectionObserver' in window) {
-    var observador = new IntersectionObserver(function (entradas) {
-      entradas.forEach(function (entrada) {
-        if (entrada.isIntersecting) {
-          entrada.target.classList.add('visivel');
-          observador.unobserve(entrada.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    revelar.forEach(function (el) { observador.observe(el); });
-  } else {
-    revelar.forEach(function (el) { el.classList.add('visivel'); });
-  }
 
   // Ano do rodapé.
   var ano = document.getElementById('ano');

@@ -4,7 +4,7 @@
   --superficie: #ffffff;
   --texto: #172136;
   --texto-suave: #4f596b;
-  --texto-fraco: #6b7486;
+  --texto-fraco: #5f6878;
   --destaque: #2f6497;
   --destaque-forte: #244f78;
   --destaque-claro: #e7eef6;
@@ -302,7 +302,7 @@ ul, ol { margin: 0; padding: 0; }
   .contato-interno { grid-template-columns: minmax(0, 1fr); gap: 32px; }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1023px) {
   .js .menu-botao { display: inline-flex; }
   .js .menu-lista {
     display: none; position: absolute; top: calc(var(--altura-topo) - 6px); left: 16px; right: 16px;
