@@ -19,6 +19,57 @@
     revelar.forEach(function (el) { el.classList.add('visivel'); });
   }
 
+  // Cenas animadas dos projetos. Sem JS, ou com movimento reduzido, ficam paradas no quadro final.
+  try {
+    var reduzir = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduzir && 'IntersectionObserver' in window) {
+      document.querySelectorAll('.cena').forEach(function (cena) {
+        var passos = Array.prototype.slice.call(cena.querySelectorAll('[data-passo]'));
+        if (!passos.length) return;
+        var ultimo = Math.max.apply(null, passos.map(function (p) { return Number(p.getAttribute('data-passo')); }));
+        var ritmo = Number(cena.getAttribute('data-ritmo')) || 700;
+        var etapa = 0, timer = null, visivel = false;
+        cena.classList.add('animada');
+
+        function zerar() {
+          cena.classList.add('zerando');
+          passos.forEach(function (p) { p.classList.remove('on'); });
+          void cena.offsetWidth;
+          cena.classList.remove('zerando');
+        }
+        function avancar() {
+          if (!visivel) return;
+          if (etapa <= ultimo) {
+            passos.forEach(function (p) {
+              if (Number(p.getAttribute('data-passo')) === etapa) p.classList.add('on');
+            });
+            etapa++;
+            timer = setTimeout(avancar, ritmo);
+            return;
+          }
+          timer = setTimeout(function () {
+            cena.classList.add('saindo');
+            timer = setTimeout(function () {
+              zerar();
+              cena.classList.remove('saindo');
+              etapa = 0;
+              timer = setTimeout(avancar, 400);
+            }, 500);
+          }, 2600);
+        }
+        new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (entrada) {
+            visivel = entrada.isIntersecting;
+            clearTimeout(timer);
+            if (visivel) timer = setTimeout(avancar, 300);
+          });
+        }, { threshold: 0.3 }).observe(cena);
+      });
+    }
+  } catch (erro) {
+    document.querySelectorAll('.cena').forEach(function (cena) { cena.classList.remove('animada'); });
+  }
+
   var topo = document.getElementById('topo-barra');
   var botaoMenu = document.querySelector('.menu-botao');
   var listaMenu = document.getElementById('menu-lista');

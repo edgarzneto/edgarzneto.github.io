@@ -1,0 +1,174 @@
+/* Cenas animadas dos cards de projeto. Ilustrações com dados fictícios. */
+:root { --ok: #2f7d55; --erro: #b54a3c; }
+
+.projeto { --pad: 26px; }
+@media (max-width: 640px) { .projeto { --pad: 20px; } }
+
+.cena {
+  position: relative; overflow: hidden;
+  height: 188px; margin: calc(var(--pad) * -1) calc(var(--pad) * -1) 20px;
+  padding: 16px; display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--borda); border-radius: 13px 13px 0 0;
+  background:
+    radial-gradient(circle at 1px 1px, #dfe4ec 1px, transparent 0) 0 0 / 18px 18px,
+    linear-gradient(180deg, #f4f7fb, #edf1f7);
+  font-family: var(--fonte-texto); font-size: 12px; line-height: 1.35; color: var(--texto);
+}
+.cena-conteudo { width: 100%; max-width: 340px; transition: opacity .5s ease; }
+.js .cena.saindo .cena-conteudo { opacity: 0; }
+.cena [data-passo] { transition: opacity .45s ease, transform .45s ease, background-color .45s ease, color .45s ease; }
+.js .cena.animada [data-passo]:not(.on) { opacity: 0; transform: translateY(6px); }
+.cena.zerando, .cena.zerando *, .cena.zerando *::before { transition: none !important; }
+
+/* Janela genérica */
+.janela {
+  background: var(--superficie); border: 1px solid var(--borda); border-radius: 10px; overflow: hidden;
+  box-shadow: 0 10px 24px -16px rgba(23, 33, 54, .35);
+}
+.janela-barra {
+  display: flex; align-items: center; gap: 5px; padding: 7px 10px;
+  border-bottom: 1px solid var(--borda); background: #f7f9fc;
+  font-size: 11px; font-weight: 600; color: var(--texto-suave);
+}
+.janela-barra i { width: 7px; height: 7px; border-radius: 50%; background: #d5dbe5; }
+.janela-barra span { margin-left: 6px; }
+
+/* 1. Painel do Caixa */
+.caixa-linhas { list-style: none; padding: 7px 10px 2px; display: grid; gap: 3px; }
+.caixa-linhas li { display: flex; justify-content: space-between; gap: 8px; font-size: 11.5px; color: var(--texto-suave); }
+.caixa-linhas .positivo { color: var(--ok); }
+.caixa-linhas .negativo { color: var(--erro); }
+.caixa-linhas .caixa-total { margin-top: 2px; padding-top: 4px; border-top: 1px dashed var(--borda); font-weight: 600; color: var(--texto); }
+.caixa-testes { display: flex; align-items: center; gap: 8px; padding: 7px 10px 9px; }
+.trilho { flex: 1; height: 6px; border-radius: 999px; background: var(--destaque-claro); overflow: hidden; }
+.progresso { display: block; width: 100%; height: 100%; border-radius: inherit; background: var(--ok); transform-origin: left; }
+.cena .progresso { transition: transform 1.2s ease; }
+.js .cena.animada .progresso:not(.on) { opacity: 1; transform: scaleX(0); }
+.caixa-testes small { font-size: 10.5px; font-weight: 600; color: var(--ok); white-space: nowrap; }
+
+/* 2. Contrato de carreteiro */
+.cena-carreteiro .cena-conteudo { display: grid; gap: 30px; }
+.estrada { position: relative; height: 38px; border-bottom: 3px dashed #c6cfdc; }
+.estrada-ponto { position: absolute; bottom: -20px; left: 0; font-size: 10.5px; font-weight: 600; color: var(--texto-fraco); }
+.estrada-ponto.estrada-fim { left: auto; right: 0; color: var(--destaque); }
+.caminhao {
+  position: absolute; bottom: 3px; left: calc(100% - 32px); width: 30px; height: 30px;
+  fill: none; stroke: var(--destaque); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+.cena .caminhao { transition: left 2s ease-in-out; }
+.js .cena.animada .caminhao:not(.on) { opacity: 1; transform: none; left: 0; }
+.contrato {
+  display: flex; align-items: center; gap: 10px; padding: 9px 11px;
+  background: var(--superficie); border: 1px solid var(--borda); border-radius: 10px;
+  box-shadow: 0 10px 24px -16px rgba(23, 33, 54, .35);
+}
+.contrato-icone {
+  flex: none; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--ok); color: #fff; font-size: 12px; font-weight: 700;
+}
+.contrato strong { display: block; font-size: 11.5px; }
+.contrato small { display: block; font-size: 10.5px; color: var(--texto-fraco); }
+
+/* 3. Atualizações de release */
+.cena-titulo {
+  margin-bottom: 16px; text-align: center;
+  font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--texto-fraco);
+}
+.release-linha { display: flex; align-items: center; }
+.release-no {
+  flex: none; padding: 4px 7px; border-radius: 999px;
+  background: var(--destaque); color: #fff; font: 700 11px/1.2 var(--fonte-titulo);
+}
+.release-seg { flex: 1; min-width: 6px; height: 3px; background: var(--destaque); transform-origin: left; }
+.cena .release-seg { transition: transform .6s ease; }
+.js .cena.animada .release-no:not(.on) {
+  opacity: 1; transform: none; background: var(--superficie); color: var(--texto-fraco); box-shadow: inset 0 0 0 1px var(--borda);
+}
+.js .cena.animada .release-seg:not(.on) { opacity: 1; transform: scaleX(0); }
+.release-ambientes { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+.release-ambientes span {
+  padding: 3px 9px; border-radius: 999px; background: var(--superficie); border: 1px solid var(--borda);
+  font-size: 10.5px; font-weight: 600; color: var(--texto-suave);
+}
+
+/* 4. Implantação para postos */
+.modulos { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+.modulos li {
+  display: flex; align-items: center; gap: 6px; min-width: 0; padding: 6px 7px;
+  background: var(--superficie); border: 1px solid var(--borda); border-radius: 8px;
+  font-size: 11px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.modulos li::before {
+  content: "✓"; flex: none; display: grid; place-items: center; width: 15px; height: 15px; border-radius: 50%;
+  background: var(--ok); color: #fff; font-size: 9px; transition: background-color .3s ease, color .3s ease;
+}
+.js .cena.animada .modulos li:not(.on) { opacity: 1; transform: none; color: var(--texto-fraco); }
+.js .cena.animada .modulos li:not(.on)::before { background: var(--destaque-claro); color: transparent; }
+.selo-virada {
+  display: table; margin: 14px auto 0; padding: 5px 12px; border-radius: 999px;
+  background: var(--destaque); color: #fff; font-size: 11px; font-weight: 600;
+}
+@media (max-width: 420px) { .modulos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* 5. Integração Protheus x PDV */
+.integracao-linha { display: flex; align-items: center; gap: 8px; }
+.integracao-no {
+  flex: none; padding: 8px 10px; border-radius: 9px;
+  background: var(--superficie); border: 1px solid var(--borda); font: 700 11.5px/1 var(--fonte-titulo);
+}
+.integracao-no.integracao-erp { background: var(--destaque); border-color: transparent; color: #fff; }
+.integracao-canal { position: relative; flex: 1; height: 2px; background: repeating-linear-gradient(90deg, #c6cfdc 0 6px, transparent 6px 10px); }
+.integracao-canal i {
+  position: absolute; top: -4px; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--destaque); box-shadow: 0 0 0 3px var(--destaque-claro);
+}
+.integracao-canal i:nth-child(1) { left: 15%; }
+.integracao-canal i:nth-child(2) { left: 45%; }
+.integracao-canal i:nth-child(3) { left: 75%; }
+.js .cena.animada .integracao-canal i { animation: cena-fluxo 2.4s linear infinite; animation-delay: calc(var(--i) * -0.8s); }
+@keyframes cena-fluxo {
+  0% { left: 0; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { left: calc(100% - 10px); opacity: 0; }
+}
+.integracao-log { list-style: none; display: grid; gap: 4px; margin-top: 18px; }
+.integracao-log li { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--texto-suave); }
+.integracao-log li::before { content: "✓"; font-weight: 700; color: var(--ok); }
+
+/* 6. Power BI */
+.cena-bi .cena-conteudo { display: grid; gap: 10px; }
+.bi-cartoes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+.bi-cartoes span { position: relative; height: 30px; border-radius: 7px; background: var(--superficie); border: 1px solid var(--borda); }
+.bi-cartoes span::before { content: ""; position: absolute; left: 8px; top: 8px; width: 45%; height: 4px; border-radius: 2px; background: var(--borda); }
+.bi-cartoes span::after { content: ""; position: absolute; left: 8px; top: 17px; width: 65%; height: 6px; border-radius: 3px; background: var(--destaque); }
+.bi-grafico { display: flex; align-items: flex-end; gap: 6px; height: 78px; padding: 0 2px; border-bottom: 1px solid var(--borda); }
+.bi-barra { flex: 1; height: var(--h); border-radius: 4px 4px 0 0; background: linear-gradient(180deg, var(--destaque), #5b8fc4); transform-origin: bottom; }
+.cena .bi-barra { transition: transform .5s ease; }
+.js .cena.animada .bi-barra:not(.on) { opacity: 1; transform: scaleY(.04); }
+
+/* 7. Levantamento de processos e MIT */
+.cena-mit .cena-conteudo { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 10px; }
+.mit-coluna { display: grid; gap: 6px; }
+.mit-coluna small { font-size: 10px; font-weight: 700; letter-spacing: .12em; color: var(--texto-fraco); }
+.mit-coluna span { position: relative; height: 20px; border-radius: 6px; background: var(--superficie); border: 1px solid var(--borda); }
+.mit-coluna span::after { content: ""; position: absolute; left: 8px; top: 7px; width: 60%; height: 4px; border-radius: 2px; background: #cfd6e1; }
+.mit-tobe span { background: var(--destaque-claro); border-color: #b9cde3; }
+.mit-tobe span::after { background: var(--destaque); }
+.mit-seta { width: 22px; height: 22px; fill: none; stroke: var(--destaque); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.mit-docs { grid-column: 1 / -1; display: flex; justify-content: center; gap: 8px; }
+.mit-docs em {
+  padding: 4px 10px; border-radius: 6px; background: var(--superficie); border: 1px solid var(--borda);
+  font: 700 10.5px/1.2 var(--fonte-titulo); font-style: normal; color: var(--destaque-forte);
+}
+
+/* 8. Gerenciador Web-Agent */
+.portas { list-style: none; display: grid; gap: 6px; padding: 8px 10px 10px; }
+.portas li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 10px; font-size: 11.5px; }
+.portas code { padding: 1px 6px; border-radius: 4px; background: var(--fundo); font: 11px/1.4 ui-monospace, Consolas, monospace; color: var(--texto-suave); }
+.portas b { display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 600; color: var(--ok); }
+.portas b::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cena, .cena *, .cena *::before { transition: none !important; animation: none !important; }
+}

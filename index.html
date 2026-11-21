@@ -27,6 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="cenas.css">
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -38,6 +39,8 @@
     <symbol id="i-baixar" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
     <symbol id="i-local" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
     <symbol id="i-seta" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+    <symbol id="i-caminhao" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+    <symbol id="i-seta-direita" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></symbol>
   </svg>
 
@@ -282,6 +285,18 @@
 
         <div class="projetos-grade">
           <article class="projeto revelar" data-categoria="desenvolvimento">
+            <div class="cena cena-caixa" aria-hidden="true" data-ritmo="650">
+              <div class="cena-conteudo janela">
+                <div class="janela-barra"><i></i><i></i><i></i><span>Painel do Caixa</span></div>
+                <ul class="caixa-linhas">
+                  <li data-passo="0"><span>Abertura</span><span>R$ 200,00</span></li>
+                  <li data-passo="1"><span>Recebimentos</span><span class="positivo">+ R$ 1.450,00</span></li>
+                  <li data-passo="2"><span>Sangria</span><span class="negativo">− R$ 1.000,00</span></li>
+                  <li data-passo="3" class="caixa-total"><span>Saldo em dinheiro</span><span>R$ 650,00</span></li>
+                </ul>
+                <div class="caixa-testes"><span class="trilho"><span class="progresso" data-passo="4"></span></span><small data-passo="5">594/594 verificações</small></div>
+              </div>
+            </div>
             <p class="projeto-categoria">Desenvolvimento</p>
             <h3>Painel do Caixa</h3>
             <p>Tela única do operador de caixa dentro da Venda Assistida do Protheus (usada como Venda Direta): abrir, receber, sangria, suprimento, resumo e fechar, sem navegar por várias rotinas.</p>
@@ -295,6 +310,19 @@
           </article>
 
           <article class="projeto revelar" data-categoria="implantacao desenvolvimento">
+            <div class="cena cena-carreteiro" aria-hidden="true" data-ritmo="1100">
+              <div class="cena-conteudo">
+                <div class="estrada">
+                  <span class="estrada-ponto">Origem</span>
+                  <svg class="caminhao" data-passo="0" viewBox="0 0 24 24"><use href="#i-caminhao"/></svg>
+                  <span class="estrada-ponto estrada-fim">Viagem fechada</span>
+                </div>
+                <div class="contrato" data-passo="2">
+                  <span class="contrato-icone">✓</span>
+                  <span><strong>Contrato de carreteiro nº 000123</strong><small>Gerado ao fechar a viagem</small></span>
+                </div>
+              </div>
+            </div>
             <p class="projeto-categoria">Implantação · Desenvolvimento</p>
             <h3>Contrato de carreteiro automático</h3>
             <p>Implantação do módulo TMS com o contrato de carreteiro e uma automação que gera o contrato assim que a viagem é fechada, sem lançamento manual.</p>
@@ -306,6 +334,19 @@
           </article>
 
           <article class="projeto revelar" data-categoria="ambiente">
+            <div class="cena cena-release" aria-hidden="true" data-ritmo="750">
+              <div class="cena-conteudo">
+                <p class="cena-titulo">Releases 12.1.x</p>
+                <div class="release-linha">
+                  <span class="release-no" data-passo="0">27</span><span class="release-seg" data-passo="1"></span>
+                  <span class="release-no" data-passo="1">33</span><span class="release-seg" data-passo="2"></span>
+                  <span class="release-no" data-passo="2">2310</span><span class="release-seg" data-passo="3"></span>
+                  <span class="release-no" data-passo="3">2410</span><span class="release-seg" data-passo="4"></span>
+                  <span class="release-no" data-passo="4">2510</span>
+                </div>
+                <p class="release-ambientes"><span data-passo="5">TOTVS Cloud</span><span data-passo="5">On-premise</span></p>
+              </div>
+            </div>
             <p class="projeto-categoria">Ambiente</p>
             <h3>Atualizações de release</h3>
             <p>Do 12.1.27 ao 12.1.2510 em quatro saltos, em ambientes TOTVS Cloud e on-premise.</p>
@@ -318,6 +359,15 @@
           </article>
 
           <article class="projeto revelar" data-categoria="implantacao">
+            <div class="cena cena-implantacao" aria-hidden="true" data-ritmo="450">
+              <div class="cena-conteudo">
+                <ul class="modulos">
+                  <li data-passo="0">Loja</li><li data-passo="1">Compras</li><li data-passo="2">Faturamento</li>
+                  <li data-passo="3">Fiscal</li><li data-passo="4">Financeiro</li><li data-passo="5">Estoque</li>
+                </ul>
+                <span class="selo-virada" data-passo="6">Entrada em produção</span>
+              </div>
+            </div>
             <p class="projeto-categoria">Implantação</p>
             <h3>TOTVS Varejo para postos de combustíveis</h3>
             <p>Implantação de Loja, Compras, Faturamento, Fiscal, Financeiro e Estoque, do levantamento de requisitos à entrada em produção, pela metodologia MIT.</p>
@@ -330,6 +380,20 @@
           </article>
 
           <article class="projeto revelar" data-categoria="desenvolvimento">
+            <div class="cena cena-integracao" aria-hidden="true" data-ritmo="1100">
+              <div class="cena-conteudo">
+                <div class="integracao-linha">
+                  <span class="integracao-no">PDV</span>
+                  <span class="integracao-canal"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i></span>
+                  <span class="integracao-no integracao-erp">Protheus</span>
+                </div>
+                <ul class="integracao-log">
+                  <li data-passo="0">Venda 000481 integrada</li>
+                  <li data-passo="1">Título a receber gerado</li>
+                  <li data-passo="2">NFC-e autorizada</li>
+                </ul>
+              </div>
+            </div>
             <p class="projeto-categoria">Desenvolvimento</p>
             <h3>Integração Protheus x PDV</h3>
             <p>Sustentação da integração do Protheus com o KingPDV, em postos, e com o KingCheckout, em supermercados.</p>
@@ -342,6 +406,17 @@
           </article>
 
           <article class="projeto revelar" data-categoria="dados">
+            <div class="cena cena-bi" aria-hidden="true" data-ritmo="220">
+              <div class="cena-conteudo">
+                <div class="bi-cartoes"><span data-passo="7"></span><span data-passo="7"></span><span data-passo="7"></span></div>
+                <div class="bi-grafico">
+                  <span class="bi-barra" data-passo="0" style="--h:38%"></span><span class="bi-barra" data-passo="1" style="--h:52%"></span>
+                  <span class="bi-barra" data-passo="2" style="--h:46%"></span><span class="bi-barra" data-passo="3" style="--h:64%"></span>
+                  <span class="bi-barra" data-passo="4" style="--h:58%"></span><span class="bi-barra" data-passo="5" style="--h:76%"></span>
+                  <span class="bi-barra" data-passo="6" style="--h:88%"></span>
+                </div>
+              </div>
+            </div>
             <p class="projeto-categoria">Dados</p>
             <h3>Relatórios gerenciais no Power BI</h3>
             <p>Relatórios gerenciais com dados do Protheus e administração do Power BI Report Server, na Lima Transportes.</p>
@@ -353,6 +428,14 @@
           </article>
 
           <article class="projeto revelar" data-categoria="implantacao">
+            <div class="cena cena-mit" aria-hidden="true" data-ritmo="420">
+              <div class="cena-conteudo">
+                <div class="mit-coluna"><small>AS IS</small><span data-passo="0"></span><span data-passo="1"></span><span data-passo="2"></span></div>
+                <svg class="mit-seta" data-passo="3" viewBox="0 0 24 24"><use href="#i-seta-direita"/></svg>
+                <div class="mit-coluna mit-tobe"><small>TO BE</small><span data-passo="4"></span><span data-passo="5"></span></div>
+                <div class="mit-docs"><em data-passo="6">MIT041</em><em data-passo="7">MIT044</em></div>
+              </div>
+            </div>
             <p class="projeto-categoria">Implantação</p>
             <h3>Levantamento de processos e documentação MIT</h3>
             <p>Levantamento e mapeamento de processos com o cliente, análise de aderência e documentação na metodologia MIT da TOTVS.</p>
@@ -365,6 +448,16 @@
           </article>
 
           <article class="projeto revelar" data-categoria="comunidade">
+            <div class="cena cena-webagent" aria-hidden="true" data-ritmo="700">
+              <div class="cena-conteudo janela">
+                <div class="janela-barra"><i></i><i></i><i></i><span>Gerenciador Web-Agent</span></div>
+                <ul class="portas">
+                  <li data-passo="0"><span>Cliente A</span><code>:8081</code><b>ativo</b></li>
+                  <li data-passo="1"><span>Cliente B</span><code>:8082</code><b>ativo</b></li>
+                  <li data-passo="2"><span>Cliente C</span><code>:8083</code><b>ativo</b></li>
+                </ul>
+              </div>
+            </div>
             <p class="projeto-categoria">Comunidade</p>
             <h3>Gerenciador Web-Agent</h3>
             <p>Ferramenta gratuita para analistas e consultores Protheus manterem várias versões do web-agent rodando ao mesmo tempo, cada cliente na sua porta.</p>
